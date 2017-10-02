@@ -9,7 +9,7 @@
  * Each counter when created displays the same comments
  * Initial value when entered not saved.
  *
- * Resources: StackOverFlow, Youtube
+ * Resources: StackOverFlow, Youtube, lonelyTwiiter
  *
  * Copyright (c)  2017 Austin Pennyfeather. CMPUT301, University of Alberta -- All rights Reserved.
  * You may use, distribute, or modify this code under terms and conditions of the Code of Student Behaviour at University of Alberta. You can find a copy of the license in this project, otherwise please contact pennyfea@ualberta.ca.
@@ -119,20 +119,26 @@ public class Counter extends AppCompatActivity {
 
 
     /**
-     * Initialise counter and sets initial value entered by the user.
+     *
+     * Return resutlts from EditValue
+     *
+     * @param requestCode
+     * @param resultCode
+     * @param data
      */
-
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             String strCounter = getIntent().getStringExtra("yourmessage");
             int counter = Integer.parseInt(strCounter);
-            Log.d("CHECK2: ", strCounter);
             counterText.setText(counter);
         }
     }
+
+    /**
+     * Initialise counter and sets initial value entered by the user.
+     */
 
     private void initCounter(){
 
@@ -176,7 +182,7 @@ public class Counter extends AppCompatActivity {
                     plusCounter();
                     break;
                 case R.id.resetButton:
-                    //initCounter();
+                    initCounter();
                     break;
             }
            saveInfile();

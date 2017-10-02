@@ -9,7 +9,7 @@
  * User can delete and set counter information accordingly.
  * All counter names are successfully store when app is closed.
  *
- * Resources: StackOverFlow, Youtube
+ * Resources: StackOverFlow, Youtube, lonelyTwiiter
  *
  * Copyright (c)  2017 Austin Pennyfeather. CMPUT301, University of Alberta -- All rights Reserved.
  * You may use, distribute, or modify this code under terms and conditions of the Code of Student Behaviour at University of Alberta. You can find a copy of the license in this project, otherwise please contact pennyfea@ualberta.ca.
