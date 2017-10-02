@@ -11,4 +11,7 @@
     <string name="Add_comment">Add comment</string>
     <string name="enter_comment" translatable="false">Enter a comment</string>
     <string name="save_button">Save Info</string>
+    <string name="inital_val">Enter initial value</string>
+    <string name="send_inital_value">Send</string>
+    <string name="edit_button">Edit</string>
 </resources>

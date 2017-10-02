@@ -1,8 +1,15 @@
 /*
  *
- * MainActiviry
+ * MainActivity
  *
  * October 1 2017
+ *
+ * The MainActivity class is used to create and store the names of the counters in an Array list,
+ * Displays the contents of the Array list in list view.
+ * User can delete and set counter information accordingly.
+ * All counter names are successfully store when app is closed.
+ *
+ * Resources: StackOverFlow, Youtube
  *
  * Copyright (c)  2017 Austin Pennyfeather. CMPUT301, University of Alberta -- All rights Reserved.
  * You may use, distribute, or modify this code under terms and conditions of the Code of Student Behaviour at University of Alberta. You can find a copy of the license in this project, otherwise please contact pennyfea@ualberta.ca.
@@ -76,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Creates a counter button, adds counter name to an array list
+     * Displays the number of items in Array list after being created.
      */
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -97,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Creates a delete button and deletes counter name from an array list
+     * Displays the number of items in Array list after being removed
      */
     public void dCounters() {
         deleteCounters.setOnClickListener(new View.OnClickListener() {
@@ -120,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Creates an edit counter button.
-     * When selected creates a new intent where you edit the counter information
+     * When selected creates a new intent where the user can edit the counter information
      */
 
     public void editCounters() {

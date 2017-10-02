@@ -4,6 +4,13 @@
  *
  * October 1 2017
  *
+ * This counter class is used  for creating and storing the counter's information.
+ * The outstanding issues are as follows: Cannot save counter information effectively,
+ * Each counter when created displays the same comments
+ * Initial value when entered not saved.
+ *
+ * Resources: StackOverFlow, Youtube
+ *
  * Copyright (c)  2017 Austin Pennyfeather. CMPUT301, University of Alberta -- All rights Reserved.
  * You may use, distribute, or modify this code under terms and conditions of the Code of Student Behaviour at University of Alberta. You can find a copy of the license in this project, otherwise please contact pennyfea@ualberta.ca.
  */
@@ -11,7 +18,7 @@
 package com.example.pennyfea.countbook;
 
 import android.content.Context;
-import android.content.SharedPreferences;
+import android.content.Intent;
 import android.icu.text.SimpleDateFormat;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
@@ -23,7 +30,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -38,7 +45,6 @@ import java.io.OutputStreamWriter;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class Counter extends AppCompatActivity {
 
@@ -46,11 +52,13 @@ public class Counter extends AppCompatActivity {
     ArrayAdapter<String> commentadapter;
     EditText commentText;
     ListView listv;
-    EditText counterText;
+    TextView counterText;
     Button addCmmt;
     Button resetBtn;
+    Button editBtn;
     private int counter;
     private static final String FILENAME = "file2.save";
+    static final int PICK_CONTACT_REQUEST = 1;
 
     /**
      *
@@ -62,7 +70,7 @@ public class Counter extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_counter);
-        counterText = (EditText) findViewById(R.id.counterText);
+        counterText = (TextView) findViewById(R.id.counterText);
         commentText = (EditText) findViewById(R.id.edit_comment);
         listv = (ListView) findViewById(R.id.commentListView);
         Button minusBtn = (Button) findViewById(R.id.minusButton);
@@ -72,15 +80,17 @@ public class Counter extends AppCompatActivity {
         resetBtn = (Button) findViewById(R.id.resetButton);
         resetBtn.setOnClickListener(clickListener);
         addCmmt = (Button)findViewById(R.id.add_comment);
+        editBtn = (Button) findViewById(R.id.edit_value);
         commentList = new ArrayList<String>();
         commentadapter = new ArrayAdapter<String>(Counter.this, android.R.layout.simple_list_item_1, commentList);
         listv.setAdapter(commentadapter);
-        initCounter();
+        editCounter();
         addComment();
     }
 
     /**
-     * Creates an comment button
+     * Creates an comment button, adds the comment entered by the user
+     * along with the date to the comment section
      */
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void addComment() {
@@ -96,13 +106,40 @@ public class Counter extends AppCompatActivity {
         });
     }
 
+    public void editCounter(){
+        editBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Counter.this, EditValue.class);
+                Counter.this.startActivity(intent);
+                startActivityForResult(intent, PICK_CONTACT_REQUEST);
+            }
+        });
+    }
+
+
     /**
-     * Initialise counter and sets initial value
+     * Initialise counter and sets initial value entered by the user.
      */
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            String strCounter = getIntent().getStringExtra("yourmessage");
+            int counter = Integer.parseInt(strCounter);
+            Log.d("CHECK2: ", strCounter);
+            counterText.setText(counter);
+        }
+    }
+
     private void initCounter(){
+
         int val = Integer.parseInt(counterText.getText().toString());
         counter = val;
         counterText.setText(counter + "");
+
     }
 
     /**
@@ -114,7 +151,8 @@ public class Counter extends AppCompatActivity {
     }
 
     /**
-     * Decrements counter
+     * Decrements counter.
+     * Counter cannot be decremented to negative numbers
      */
     private void minusCounter(){
         if(counter <= 0 )
@@ -138,7 +176,7 @@ public class Counter extends AppCompatActivity {
                     plusCounter();
                     break;
                 case R.id.resetButton:
-                    initCounter();
+                    //initCounter();
                     break;
             }
            saveInfile();
@@ -148,8 +186,6 @@ public class Counter extends AppCompatActivity {
     /**
      * Loads a file
      */
-
-
     private void loadFromFile() {
 
         try {
@@ -189,7 +225,6 @@ public class Counter extends AppCompatActivity {
     /**
      * Loads information from previous session
      */
-
     @Override
     protected void onStart() {
         super.onStart();

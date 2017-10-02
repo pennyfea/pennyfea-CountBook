@@ -7,42 +7,39 @@
     tools:context="com.example.pennyfea.countbook.Counter">
 
 
-    <EditText
+    <TextView
         android:id="@+id/counterText"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="36dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="40dp"
         android:inputType="number"
         android:text="@string/inital_value"
         android:textAlignment="center"
         android:textSize="120sp"
-        app:layout_constraintBottom_toTopOf="@+id/resetButton"
-        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.53"
-        tools:layout_constraintBottom_creator="1"
-        tools:layout_constraintLeft_creator="1"
+        android:layout_marginTop="24dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/resetButton"
+        tools:layout_constraintTop_creator="1"
         tools:layout_constraintRight_creator="1"
-        tools:layout_constraintTop_creator="1" />
+        tools:layout_constraintBottom_creator="1"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        tools:layout_constraintLeft_creator="1" />
 
     <Button
         android:id="@+id/minusButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/counter_minus"
+        app:layout_constraintRight_toLeftOf="@+id/edit_value"
         app:layout_constraintLeft_toRightOf="@+id/resetButton"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintBottom_creator="1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.55"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/resetButton"
+        tools:layout_constraintBaseline_creator="1" />
 
     <Button
         android:id="@+id/resetButton"
@@ -51,8 +48,9 @@
         android:text="@string/counter_reset"
         app:layout_constraintLeft_toRightOf="@+id/addButton"
         app:layout_constraintRight_toLeftOf="@+id/minusButton"
-        app:layout_constraintBaseline_toBaselineOf="@+id/minusButton"
-        tools:layout_constraintBaseline_creator="1" />
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toTopOf="@+id/commentListView"
+        android:layout_marginBottom="8dp" />
 
     <Button
         android:id="@+id/addButton"
@@ -61,9 +59,9 @@
         android:hint="@string/counter_add"
         android:text="@string/counter_add"
         app:layout_constraintRight_toLeftOf="@+id/resetButton"
-        tools:layout_constraintTop_creator="1"
-        app:layout_constraintTop_toTopOf="@+id/resetButton"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBaseline_toBaselineOf="@+id/resetButton"
+        tools:layout_constraintBaseline_creator="1" />
 
     <Button
         android:id="@+id/add_comment"
@@ -75,37 +73,43 @@
         app:layout_constraintLeft_toRightOf="@+id/edit_comment"
         app:layout_constraintRight_toRightOf="parent" />
 
-    <ListView
-        android:layout_width="0dp"
-        android:layout_height="139dp"
-        android:layout_marginTop="98dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/counterText"
-        android:id="@+id/commentListView"
-        tools:layout_constraintRight_creator="1"
-        android:layout_marginStart="6dp"
-        android:layout_marginEnd="6dp"
-        tools:layout_constraintLeft_creator="1"
-        android:layout_marginLeft="6dp"
-        android:layout_marginRight="6dp" />
-
 
     <EditText
         android:id="@+id/edit_comment"
         android:layout_width="250dp"
         android:layout_height="47dp"
-        android:layout_marginBottom="29dp"
-        android:layout_marginTop="29dp"
         android:hint="@string/enter_comment"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/add_comment"
-        app:layout_constraintTop_toBottomOf="@+id/commentListView"
         android:layout_marginLeft="8dp"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintBottom_creator="1"
-        android:layout_marginStart="8dp" />
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp" />
+
+    <Button
+        android:id="@+id/edit_value"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:text="@string/edit_button"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/minusButton"
+        app:layout_constraintBaseline_toBaselineOf="@+id/minusButton"
+        tools:layout_constraintBaseline_creator="1" />
+
+    <ListView
+        android:id="@+id/commentListView"
+        android:layout_width="0dp"
+        android:layout_height="169dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginStart="6dp"
+        app:layout_constraintBottom_toTopOf="@+id/edit_comment"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1" />
 
 
 </android.support.constraint.ConstraintLayout>
