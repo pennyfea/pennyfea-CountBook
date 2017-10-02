@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Pennyfea-CountBook</string>
+    <string name="main_add_button">Create Counter</string>
+    <string name="activity_edit_message">Enter a message</string>
+    <string name="counter_add">+</string>
+    <string name="counter_reset">RESET</string>
+    <string name="counter_minus">-</string>
+    <string name="inital_value">0</string>
+    <string name="delete_counters">Delete selected counter</string>
+    <string name="Edit_counter_name">Counter Info</string>
+    <string name="Add_comment">Add comment</string>
+    <string name="enter_comment" translatable="false">Enter a comment</string>
+    <string name="save_button">Save Info</string>
+</resources>
